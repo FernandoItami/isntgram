@@ -6,15 +6,21 @@ services:
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=isntgram
+      - POSTGRES_USER=blackmule
+      - POSTGRES_PASSWORD=strsec
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: 
+      sh -c "pip3 install -r requirements.txt &&
+      python3 manage.py makemigrations &&
+      python3 manage.py migrate &&
+      python3 manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
     ports:
       - "8000:8000"
     depends_on:
       - db
+volumes:
+  db: {}
