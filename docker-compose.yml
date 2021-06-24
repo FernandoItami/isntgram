@@ -2,25 +2,26 @@ version: "3.9"
    
 services:
   db:
+    container_name: db
     image: postgres
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - ./backend/data/db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=isntgram
       - POSTGRES_USER=blackmule
       - POSTGRES_PASSWORD=strsec
-  web:
-    build: .
-    command: 
-      sh -c "pip3 install -r requirements.txt &&
-      python3 manage.py makemigrations &&
-      python3 manage.py migrate &&
-      python3 manage.py runserver 0.0.0.0:8000"
+  backend:
+    user: 1000:1000
+    container_name: backend
+    build: ./backend
+    command: /scripts.sh
     volumes:
       - .:/code
+      - django-static:/backend/static
     ports:
       - "8000:8000"
     depends_on:
       - db
 volumes:
+  django-static:
   db: {}
