@@ -1,9 +1,10 @@
 <template>
   <div>
     <div v-for="(post, i) in posts" :key="i">
-      <h1 :key="i">{{ post.title }}</h1>
-      <p :key="i">{{ post.content }}</p>
+      <h1 :key="i">{{ post.description }}</h1>
+      <p :key="i">{{ post.body }}</p>
     </div>
+    <label for="">pqp</label>
   </div>
 </template>
 
@@ -20,7 +21,7 @@ export default {
   },
   methods: {
     fetchPosts() {
-      fetch('http://localhost:8000/api/posts/', {
+      fetch('http://0.0.0.0:8000/api/posts/', {
         method: 'GET',
         headers: {
           Accept: 'application/json',

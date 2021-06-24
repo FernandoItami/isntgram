@@ -6,12 +6,14 @@ services:
     image: postgres
     volumes:
       - ./backend/data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=isntgram
-      - POSTGRES_USER=blackmule
-      - POSTGRES_PASSWORD=strsec
+    #environment:
+    #  - POSTGRES_DB=postgres
+    #  - POSTGRES_USER=postgres
+    #  - POSTGRES_PASSWORD=postgres
+    #  POSTGRES_HOST_AUTH_METHOD: trust
+    networks:
+      - django-nginx
   backend:
-    user: 1000:1000
     container_name: backend
     build: ./backend
     command: /scripts.sh
