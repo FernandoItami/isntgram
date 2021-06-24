@@ -18,10 +18,34 @@ services:
     volumes:
       - .:/code
       - django-static:/backend/static
-    ports:
-      - "8000:8000"
+    networks:
+      - django-nginx
     depends_on:
       - db
+  frontend:
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend:/app/frontend:ro
+    networks:
+      - django-nginx
+    depends_on:
+      - backend
+      - db
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8000:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./nginx/dev.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - django-nginx
 volumes:
   django-static:
   db: {}
+networks:
+  django-nginx:
+    driver: bridge
+  
