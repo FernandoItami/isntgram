@@ -4,7 +4,6 @@
       <h1 :key="i">{{ post.description }}</h1>
       <p :key="i">{{ post.body }}</p>
     </div>
-    <label for="">pqp</label>
   </div>
 </template>
 

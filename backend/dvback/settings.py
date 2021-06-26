@@ -71,10 +71,10 @@ WSGI_APPLICATION = 'dvback.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'isntgram',
-        'USER': 'blackmule',
-        'PASSWORD': 'strsec',
-        'HOST': 'db',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASS'),
+        'HOST': env('DB_HOST'),
         'PORT': 5432,
     }
 }

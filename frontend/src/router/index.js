@@ -4,12 +4,12 @@ import Posts from '../views/Posts.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/banana',
     name: 'Home',
     component: Home
   },
   {
-    path: '/posts',
+    path: '/',
     name: 'posts',
     component: Posts
   },
