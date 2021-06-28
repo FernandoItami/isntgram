@@ -5,15 +5,29 @@ export default createStore({
   state: {
     accessToken:null,
     refreshToken:null,
-    APIData: ''
+    //APIData: ''
   },
   mutations: {
     updateStore (state, {access, refresh}) {
       state.accessToken = access,
       state.refreshToken = refresh
+    },
+    destroyToken (state) {
+      state.accessToken = null,
+      state.refreshToken = null
+    }
+  },
+  getters: {
+    loggedIn (state) {
+      return state.accessToken != null
     }
   },
   actions: {
+    userLogout (context) {
+      if (context.getters.loggedIn) {
+        context.commit('destroyToken')
+      }
+    },
     userLogin (context, usercredentials) {
       return new Promise ((resolve, reject) => {
         getAPI.post('api/token/', {
@@ -28,7 +42,7 @@ export default createStore({
           reject(err)
         })
       })
-    }
+    },
   },
   modules: {
   }

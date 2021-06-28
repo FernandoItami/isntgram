@@ -12,7 +12,9 @@
               <div class="form-group">
                 <input type="password" name="password" id="pass" v-model="password" class="form-control" placeholder="Password">
               </div><br>
-              <button type="submit" class="btn btn-md btn-primary btn-block">Login</button>
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-md btn-primary">Login</button>
+              </div>
             </form>
           </div>
         </div>

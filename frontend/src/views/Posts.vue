@@ -37,9 +37,6 @@ export default {
               this.posts = json;
             });
           }
-          else {
-            this.$router.push({name:'login'})
-          }
         });
     },
   },

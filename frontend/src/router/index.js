@@ -1,19 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
 import Posts from '../views/Posts.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
+import Register from '../views/Register.vue'
 
 const routes = [
   {
-    path: '/banana',
-    name: 'Home',
-    component: Home
-  },
-  {
     path: '/',
     name: 'posts',
-    component: Posts
+    component: Posts,
+    meta: {
+      requiresLogin: true
+    }
   },
   {
     path: '/login',
@@ -24,6 +22,11 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: Logout
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register
   },
 ]
 
